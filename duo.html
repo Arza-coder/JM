@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Will You Be My Kaduo?</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffe6f0;
+      color: #333;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    h1 {
+      color: #4933d6;
+    }
+    button {
+      background-color: #d6336c;
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      margin: 10px;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #a02a54;
+    }
+    input, textarea {
+      font-size: 16px;
+      padding: 10px;
+      width: 80%;
+      max-width: 400px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    #container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(214, 51, 108, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h1>Will you be my <em>kaduo</em>?</h1>
+    <div id="step1">
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
+    </div>
+
+    <div id="happyMessage" style="display:none; margin-top: 20px;">
+      <h2>Yay! 🥰</h2>
+      <p>I'm so happy you accepted to be my kaduo! ❤️</p>
+    </div>
+
+    <div id="noReason" style="display:none; margin-top: 20px;">
+      <p>Oh, that's okay. Can I ask why?</p>
+      <textarea id="reasonInput" rows="3" placeholder="Your reason..."></textarea><br />
+      <button id="submitReasonBtn">Submit</button>
+    </div>
+
+    <div id="friendQuestion" style="display:none; margin-top: 20px;">
+      <p>Thanks for sharing. Can we still be friends? 😊</p>
+      <button id="friendYesBtn">Yes</button>
+      <button id="friendNoBtn">No</button>
+    </div>
+
+    <div id="friendResponse" style="display:none; margin-top: 20px;">
+      <!-- Will show message based on friend answer -->
+    </div>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
+    const step1 = document.getElementById('step1');
+    const happyMessage = document.getElementById('happyMessage');
+    const noReason = document.getElementById('noReason');
+    const submitReasonBtn = document.getElementById('submitReasonBtn');
+    const friendQuestion = document.getElementById('friendQuestion');
+    const friendYesBtn = document.getElementById('friendYesBtn');
+    const friendNoBtn = document.getElementById('friendNoBtn');
+    const friendResponse = document.getElementById('friendResponse');
+    const reasonInput = document.getElementById('reasonInput');
+
+    yesBtn.addEventListener('click', () => {
+      step1.style.display = 'none';
+      happyMessage.style.display = 'block';
+    });
+
+    noBtn.addEventListener('click', () => {
+      step1.style.display = 'none';
+      noReason.style.display = 'block';
+      reasonInput.focus();
+    });
+
+    submitReasonBtn.addEventListener('click', () => {
+      const reason = reasonInput.value.trim();
+      if (reason === '') {
+        alert('Please tell me why, or just be honest 🙂');
+        reasonInput.focus();
+        return;
+      }
+      noReason.style.display = 'none';
+      friendQuestion.style.display = 'block';
+    });
+
+    friendYesBtn.addEventListener('click', () => {
+      friendQuestion.style.display = 'none';
+      friendResponse.style.display = 'block';
+      friendResponse.innerHTML = "<h2>I'm glad! Friends it is. 😊</h2>";
+    });
+
+    friendNoBtn.addEventListener('click', () => {
+      friendQuestion.style.display = 'none';
+      friendResponse.style.display = 'block';
+      friendResponse.innerHTML = "<h2>I understand. Wishing you all the best! 💖</h2>";
+    });
+  </script>
+</body>
+</html>
